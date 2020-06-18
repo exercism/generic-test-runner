@@ -4,6 +4,5 @@ FROM alpine:3.10
 # RUN apk add --no-cache coreutils
 
 WORKDIR /opt/test-runner
-COPY run.sh bin/
-COPY process_results.py ./
+COPY ./bin/ bin/
 ENTRYPOINT ["/opt/test-runner/bin/run.sh"]
