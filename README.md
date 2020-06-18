@@ -1,6 +1,10 @@
+# Exercism Generic Test Runner Template
+
+This repository is a [template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository) for creating automated test runners for [Exercism] tracks.
+
 # Exercism TRACK_NAME_HERE Test Runner
 
-The Docker image to automatically run tests on TRACK_NAME_HERE solutions submitted to [exercism](https://exercism.io).
+The Docker image to automatically run tests on TRACK_NAME_HERE solutions submitted to [Exercism].
 
 ## Running the Tests
 To run all of the tests, do the following:
@@ -26,3 +30,4 @@ To run the tests of an arbitrary exercise using the Docker container, do the fol
 **Note**: the solution and output directory's **MUST** be relative paths!
 
   [golden]: https://ro-che.info/articles/2017-12-04-golden-tests
+  [Exercism]: https://exercism.io
