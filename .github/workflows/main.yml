@@ -27,5 +27,8 @@ jobs:
       - name: Build Docker Image
         run: docker build -f Dockerfile -t generic-test-runner .
 
+      - name: Test docker image contents
+        run: docker run -w "/opt/test-runner" --entrypoint "ls -al" generic-test-runner
+
       - name: Run Tests
         run: docker run -w "/opt/test-runner" --entrypoint "bin/run-all.sh" generic-test-runner
