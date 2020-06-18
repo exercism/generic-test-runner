@@ -16,6 +16,13 @@
 # Docker
 Dockerfile        text
 
+# Documentation
+*.markdown        text
+*.md              text
+*.txt             text
+LICENSE           text
+*README*          text
+
 #
 # Exclude files from exporting
 #
