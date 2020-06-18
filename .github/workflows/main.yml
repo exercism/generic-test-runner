@@ -10,6 +10,8 @@ on:
       - 'LICENSE'
       - '**.md'
   push:
+    branches:
+      - master
     paths-ignore:
       - '.gitignore'
       - 'LICENSE'
