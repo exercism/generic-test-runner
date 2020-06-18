@@ -1,4 +1,6 @@
-#! /bin/bash -e
+#! /bin/sh
+set -e
+
 SLUG="$1"
 INPUT_DIR="$2"
 OUTPUT_DIR="$3"

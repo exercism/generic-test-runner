@@ -1,4 +1,5 @@
-#! /bin/bash -e
+#! /bin/sh
+set -e
 
 output_dir="${1:-test/output/}"
 
