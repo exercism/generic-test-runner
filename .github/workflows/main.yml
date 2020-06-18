@@ -28,4 +28,4 @@ jobs:
         run: docker build -f Dockerfile -t generic-test-runner .
 
       - name: Run Tests
-        run: docker run --entrypoint "cd /opt/test-runner && bin/run-all.sh" generic-test-runner
+        run: docker run -w "/opt/test-runner --entrypoint "bin/run-all.sh" generic-test-runner
