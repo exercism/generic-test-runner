@@ -6,16 +6,16 @@ on:
     branches:
       - master
     paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - '**.md'
+      - ".gitignore"
+      - "LICENSE"
+      - "**.md"
   push:
     branches:
       - master
     paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - '**.md'
+      - ".gitignore"
+      - "LICENSE"
+      - "**.md"
 
 jobs:
   build:
