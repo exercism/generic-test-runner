@@ -9,6 +9,7 @@ This repository is a [template repository](https://help.github.com/en/github/cre
 3. In your new repository:
     1. Remove the [Exercism Test Runner Template](#exercism-test-runner-template) section from README.md
     2. Modify Dockerfile and bin/run.sh to match your track's needs
+4. The interface that test runners must conform to is defined in [docs/interface.md](docs/interface.md).
 
 # Exercism TRACK_NAME_HERE Test Runner
 
