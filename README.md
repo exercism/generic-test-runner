@@ -34,6 +34,8 @@ To run the tests of an arbitrary exercise using the Docker container, do the fol
 1. Open a terminal in the project's root
 2. Run `./bin/run-in-docker.sh <exercise-slug> <./relative/path/to/solution/dir/> <./relative/path/to/output/dir/>`
 
+Once the test runner has finished, its results will be written to `./relative/path/to/output/dir/results.json`.
+
 **Note**: the solution and output directory's **MUST** be relative paths!
 
 ## Run the tests
