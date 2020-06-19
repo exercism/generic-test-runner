@@ -8,14 +8,12 @@ on:
     paths-ignore:
       - ".gitignore"
       - "LICENSE"
-      - "**.md"
   push:
     branches:
       - master
     paths-ignore:
       - ".gitignore"
       - "LICENSE"
-      - "**.md"
 
 jobs:
   build:
