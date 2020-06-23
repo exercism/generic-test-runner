@@ -6,16 +6,14 @@ on:
     branches:
       - master
     paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - '**.md'
+      - ".gitignore"
+      - "LICENSE"
   push:
     branches:
       - master
     paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - '**.md'
+      - ".gitignore"
+      - "LICENSE"
 
 jobs:
   build:
@@ -28,4 +26,4 @@ jobs:
         run: docker build -f Dockerfile -t generic-test-runner .
 
       - name: Run Tests
-        run: docker run -w "/opt/test-runner" --entrypoint "bin/run-all.sh" generic-test-runner
+        run: docker run -w "/opt/test-runner" --entrypoint "bin/run-tests.sh" generic-test-runner
