@@ -34,6 +34,9 @@ mkdir -p "$output_dir"
 
 # run image passing the arguments
 docker run \
+    --network none \
+    --read-only \
     --mount type=bind,src=$PWD/$2,dst=/solution \
     --mount type=bind,src=$PWD/$output_dir,dst=/output \
+    --mount type=tmpfs,dst=/tmp \
     generic-test-runner $1 /solution/ /output/
