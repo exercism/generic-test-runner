@@ -1,26 +1,57 @@
-#! /bin/sh
-set -e
+#!/usr/bin/env bash
 
-SLUG="$1"
-INPUT_DIR="$2"
-OUTPUT_DIR="$3"
+# Synopsis:
+# Run the test runner on a solution.
 
-echo "$SLUG: testing..."
-# PLACEHOLDER - Insert call to run your language tests here
+# Arguments:
+# $1: exercise slug
+# $2: absolute path to solution folder
+# $3: absolute path to output directory
 
-echo "$SLUG: processing test output in $INPUT_DIR..."
-# PLACEHOLDER - OPTIONAL: Your language may support outputting results
-#   in the correct format
+# Output:
+# Writes the test results to a results.json file in the passed-in output directory.
+# The test results are formatted according to the specifications at https://github.com/exercism/docs/blob/main/building/tooling/test-runners/interface.md
 
-# Create $OUTPUT_DIR if it doesn't exist
-[ -d "$OUTPUT_DIR" ] || mkdir -p "$OUTPUT_DIR"
+# Example:
+# ./bin/run.sh two-fer /absolute/path/to/two-fer/solution/folder/ /absolute/path/to/output/directory/
 
-echo "$SLUG: copying processed results to $OUTPUT_DIR..."
-# PLACEHOLDER - OPTIONAL: Your language may support placing results
-#   directly in $OUTPUT_DIR
-cp "${INPUT_DIR}/results.json" "$OUTPUT_DIR"
+# If any required arguments is missing, print the usage and exit
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "usage: ./bin/run.sh exercise-slug /absolute/path/to/two-fer/solution/folder/ /absolute/path/to/output/directory/"
+    exit 1
+fi
 
-echo "$SLUG: comparing ${OUTPUT_DIR}/results"
-diff "${INPUT_DIR}/results.json" "${OUTPUT_DIR}/results.json"
+slug="$1"
+input_dir="${2%/}"
+output_dir="${3%/}"
+exercise="${slug//-/_}"
+implementation_file="${input_dir}/${exercise}.pl"
+tests_file="${input_dir}/${exercise}_tests.plt"
+results_file="${output_dir}/results.json"
 
-echo "$SLUG: OK"
+# Create the output directory if it doesn't exist
+mkdir -p "${output_dir}"
+
+echo "${slug}: testing..."
+
+# Run the tests for the provided implementation file and redirect stdout and
+# stderr to capture it
+# TODO: Replace 'RUN_TESTS_COMMAND' with the command to run the tests
+test_output=$(RUN_TESTS_COMMAND 2>&1)
+
+# Write the results.json file based on the exit code of the command that was 
+# just executed that tested the implementation file
+if [ $? -eq 0 ]; then
+    jq -n '{version: 1, status: "pass"}' > ${results_file}
+else
+    # OPTIONAL: Manually add colors to the output to help scanning the output for errors
+    # If the test output does not contain colors to help identify failing (or passing)
+    # tests, it can be helpful to manually add colors to the output
+    # colorized_test_output=$(echo "$test_output" \
+    #      | GREP_COLOR='01;31' grep --color=always -E -e '^(ERROR:.*|.*failed)$|$' \
+    #      | GREP_COLOR='01;32' grep --color=always -E -e '^.*passed$|$')
+
+    jq -n --arg output "${test_output}" '{version: 1, status: "fail", output: $output}' > ${results_file}
+fi
+
+echo "${slug}: done"
