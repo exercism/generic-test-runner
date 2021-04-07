@@ -13,11 +13,9 @@
 # ./bin/run-tests-in-docker.sh
 
 # Build the Docker image
-# TODO: replace 'generic-test-runner' with `TRACK_SLUG-test-runner`
-docker build --rm -t exercism/generic-test-runner .
+docker build --rm -t exercism/test-runner .
 
 # Run the Docker image using the settings mimicking the production environment
-# TODO: replace 'generic-test-runner' with `TRACK_SLUG-test-runner`
 docker run \
     --network none \
     --read-only \
@@ -25,4 +23,4 @@ docker run \
     --mount type=tmpfs,dst=/tmp \
     --workdir /opt/test-runner \
     --entrypoint /opt/test-runner/bin/run-tests.sh \
-    exercism/generic-test-runner
+    exercism/test-runner

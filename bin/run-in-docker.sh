@@ -31,15 +31,13 @@ output_dir="${3%/}"
 mkdir -p "${output_dir}"
 
 # Build the Docker image
-# TODO: replace 'generic-test-runner' with `TRACK_SLUG-test-runner`
-docker build --rm -t exercism/generic-test-runner .
+docker build --rm -t exercism/test-runner .
 
 # Run the Docker image using the settings mimicking the production environment
-# TODO: replace 'generic-test-runner' with `TRACK_SLUG-test-runner`
 docker run \
     --network none \
     --read-only \
     --mount type=bind,src="${input_dir}",dst=/solution \
     --mount type=bind,src="${output_dir}",dst=/output \
     --mount type=tmpfs,dst=/tmp \
-    exercism/generic-test-runner "${slug}" /solution /output 
+    exercism/test-runner "${slug}" /solution /output 
