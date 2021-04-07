@@ -1,1 +1,1 @@
-test/output/
+tests/**/results.json
