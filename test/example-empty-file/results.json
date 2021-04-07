@@ -1,5 +1,0 @@
-{
-  "status": "error",
-  "message": "ImportError: cannot import name 'hello' from 'example_empty_file' (./test/example-empty-file/example_empty_file.py)",
-  "tests": []
-}
