@@ -27,9 +27,9 @@ for test_dir in tests/*; do
 
         # OPTIONAL: Normalize the results file
         # If the results.json file contains information that changes between 
-        # different test runs (e.g. timing information), you can normalize
-        # the results file before doing a comparison
-        # sed -i "s~${test_dir_path}~/solution~g" "${results_file_path}"
+        # different test runs (e.g. timing information), you should normalize
+        # the results file to allow the diff comparison below to work as expected
+        # sed -i 's/Elapsed time: [0-9]+\.[0-9]+ seconds//' "${results_file_path}"
 
         echo "${test_dir_name}: comparing ${results_file} to ${expected_results_file}"
         diff "${results_file_path}" "${expected_results_file_path}"
