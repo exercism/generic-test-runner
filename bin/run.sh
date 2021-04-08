@@ -24,9 +24,6 @@ fi
 slug="$1"
 input_dir="${2%/}"
 output_dir="${3%/}"
-exercise="${slug//-/_}"
-implementation_file="${input_dir}/${exercise}.pl"
-tests_file="${input_dir}/${exercise}_tests.plt"
 results_file="${output_dir}/results.json"
 
 # Create the output directory if it doesn't exist
@@ -52,7 +49,7 @@ else
     # OPTIONAL: Manually add colors to the output to help scanning the output for errors
     # If the test output does not contain colors to help identify failing (or passing)
     # tests, it can be helpful to manually add colors to the output
-    # colorized_test_output=$(echo "$test_output" \
+    # colorized_test_output=$(echo "${test_output}" \
     #      | GREP_COLOR='01;31' grep --color=always -E -e '^(ERROR:.*|.*failed)$|$' \
     #      | GREP_COLOR='01;32' grep --color=always -E -e '^.*passed$|$')
 
