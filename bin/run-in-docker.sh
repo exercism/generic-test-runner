@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -e
+#!/usr/bin/env sh
 
 # Synopsis:
 # Run the test runner on a solution using the test runner Docker image.
