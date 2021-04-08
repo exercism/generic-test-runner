@@ -15,28 +15,26 @@ exit_code=0
 
 # Iterate over all test directories
 for test_dir in tests/*; do
-    test_dir_name="$(basename $test_dir)"
-    test_dir_path="$(realpath $test_dir)"
+    test_dir_name=$(basename "${test_dir}")
+    test_dir_path=$(realpath "${test_dir}")
     results_file="results.json"
-    results_file_path="${test_dir}/${results_file}.json"
+    results_file_path="${test_dir}/${results_file}"
     expected_results_file="expected_results.json"
-    expected_results_file_path="${test_dir}/${expected_results_file}.json"    
+    expected_results_file_path="${test_dir}/${expected_results_file}"
 
-    if [ "${test_dir_name}" != "output" ] && [ -f "${expected_results_file_path}" ]; then
-        bin/run.sh "${test_dir_name}" "${test_dir}" "${test_dir}"
+    bin/run.sh "${test_dir_name}" "${test_dir}" "${test_dir}"
 
-        # OPTIONAL: Normalize the results file
-        # If the results.json file contains information that changes between 
-        # different test runs (e.g. timing information), you should normalize
-        # the results file to allow the diff comparison below to work as expected
-        # sed -i 's/Elapsed time: [0-9]+\.[0-9]+ seconds//' "${results_file_path}"
+    # OPTIONAL: Normalize the results file
+    # If the results.json file contains information that changes between 
+    # different test runs (e.g. timing information), you should normalize
+    # the results file to allow the diff comparison below to work as expected
+    # sed -i 's/Elapsed time: [0-9]+\.[0-9]+ seconds//' "${results_file_path}"
 
-        echo "${test_dir_name}: comparing ${results_file} to ${expected_results_file}"
-        diff "${results_file_path}" "${expected_results_file_path}"
+    echo "${test_dir_name}: comparing ${results_file} to ${expected_results_file}"
+    diff "${results_file_path}" "${expected_results_file_path}"
 
-        if [ $? -ne 0 ]; then
-            exit_code=1
-        fi
+    if [ $? -ne 0 ]; then
+        exit_code=1
     fi
 done
 
