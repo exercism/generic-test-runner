@@ -2,7 +2,8 @@ name: Push Docker images to DockerHub and ECR
 
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
 
 jobs:
   multiple-registries:
