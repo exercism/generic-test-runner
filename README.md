@@ -13,6 +13,8 @@ This repository is a [template repository](https://help.github.com/en/github/cre
    - Tip: look for `TODO:` comments to point you towards code that need updating
    - Tip: look for `OPTIONAL:` comments to point you towards code that _could_ be useful
 
+Once you're happy with your test runner, [open an issue on the exercism/exercism](https://github.com/exercism/exercism/issues/new?assignees=&labels=&template=new-test-runner.md&title=%5BNew+Test+Runner%5D+) to request an official test runner repository for your track.
+
 # Exercism TRACK_NAME_HERE Test Runner
 
 The Docker image to automatically run tests on TRACK_NAME_HERE solutions submitted to [Exercism].
