@@ -1,5 +1,9 @@
 .git/
+.appends/
 .github/
-.bin/run-in-docker.sh
-.bin/run-tests-in-docker.sh
+.gitattributes
+.gitignore
+Dockerfile
+bin/run-in-docker.sh
+bin/run-tests-in-docker.sh
 tests/
