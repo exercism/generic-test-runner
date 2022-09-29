@@ -33,8 +33,8 @@ echo "${slug}: testing..."
 
 # Run the tests for the provided implementation file and redirect stdout and
 # stderr to capture it
-test_output=$(true)
-# TODO: substitute "true" with the actual command to run the test:
+test_output=$(false)
+# TODO: substitute "false" with the actual command to run the test:
 # test_output=$(command_to_run_tests 2>&1)
 
 # Write the results.json file based on the exit code of the command that was 
