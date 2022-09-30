@@ -1,7 +1,7 @@
 FROM alpine:3.10
 
-# TODO: install packages required to run the tests
-# RUN apk add --no-cache jq coreutils
+# install packages required to run the tests
+RUN apk add --no-cache jq coreutils
 
 WORKDIR /opt/test-runner
 COPY . .
