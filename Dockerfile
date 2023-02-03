@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.17
 
 # install packages required to run the tests
 RUN apk add --no-cache jq coreutils
