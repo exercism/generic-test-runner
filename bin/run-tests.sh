@@ -25,14 +25,13 @@ for test_dir in tests/*; do
     # different test runs (e.g. timing information or paths), you should normalize
     # the results file to allow the diff comparison below to work as expected
 
-    for file in results.json; do
-        expected_file="expected_${file}"
-        echo "${test_dir_name}: comparing ${file} to ${expected_file}"
+    file="results.json"
+    expected_file="expected_${file}"
+    echo "${test_dir_name}: comparing ${file} to ${expected_file}"
 
-        if ! diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"; then
-            exit_code=1
-        fi
-    done
+    if ! diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"; then
+        exit_code=1
+    fi
 done
 
 exit ${exit_code}
