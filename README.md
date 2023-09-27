@@ -8,7 +8,9 @@ This repository is a [template repository](https://help.github.com/en/github/cre
 2. Follow [GitHub's documentation](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) for creating a repository from a template repository
    - Name your new repository based on your language track's slug (i.e. if your track is for Python, your test runner repo name is `python-test-runner`)
 3. Remove this [Exercism Test Runner Template](#exercism-test-runner-template) section from the `README.md` file
-4. Build the test runner, conforming to the [Test Runner interface specification](https://github.com/exercism/docs/blob/main/building/tooling/test-runners/interface.md).
+4. Replace `TRACK_NAME_HERE` with your track's name in the `README.md` file
+5. Replace any occurances of `exercism/test-runner` with `exercism/<track>-test-runner` (e.g. `exercism/python-test-runner`)
+6. Build the test runner, conforming to the [Test Runner interface specification](https://github.com/exercism/docs/blob/main/building/tooling/test-runners/interface.md).
    - Update the files to match your track's needs. At the very least, you'll need to update `bin/run.sh`, `Dockerfile` and the test solutions in the `tests` directory
    - Tip: look for `TODO:` comments to point you towards code that need updating
    - Tip: look for `OPTIONAL:` comments to point you towards code that _could_ be useful
