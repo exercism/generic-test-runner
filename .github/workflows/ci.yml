@@ -27,7 +27,7 @@ jobs:
           context: .
           push: false
           load: true
-          tags: exercism/test-runner
+          tags: exercism/TRACK_SLUG-test-runner
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
