@@ -34,7 +34,7 @@ mv TRACK_README.md README.md
 git init
 git add .
 git commit -am "Initial commit"
-gh repo create exercism/fake-test-runner --public --push --source=.
+gh repo create "${REPO}" --public --push --source=.
 
 # Disable merge commits and rebase merges
 gh api --method PATCH "/repos/${REPO}" -f "allow_merge_commit=false" -f "allow_rebase_merge=false"
