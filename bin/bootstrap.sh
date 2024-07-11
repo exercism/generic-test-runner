@@ -4,11 +4,11 @@
 # Bootstrap a test runner repo
 
 # Example:
-# LANGUAGE=Ruby SLUG=ruby ./bin/bootstrap.sh
+# LANGUAGE=Ruby SLUG=ruby bin/bootstrap.sh
 
 # If any required arguments is missing, print the usage and exit
 if [ -z "${LANGUAGE}" ] || [ -z "${SLUG}" ]; then
-    echo "usage: LANGUAGE=<language> SLUG=<slug> ./bin/bootstrap.sh"
+    echo "usage: LANGUAGE=<language> SLUG=<slug> bin/bootstrap.sh"
     exit 1
 fi
 
@@ -28,6 +28,7 @@ for file in $(git grep --files-with-matches TRACK_NAME); do
     sed -i "s/TRACK_NAME/${LANGUAGE}/g" "${file}"
 done
 
+rm -f bin/bootstrap.sh
 rm -rf .git
 git init
 git add .
