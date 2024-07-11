@@ -9,23 +9,23 @@ Update the files to match your track's needs. At the very least, you'll need to 
 
 - Tip: look for `TODO:` comments to point you towards code that need updating
 - Tip: look for `OPTIONAL:` comments to point you towards code that _could_ be useful
-- Tip: if it proves impossible for the Docker image to work on a read-only filesystem, feel free to remove the `--read-only` flag from the `bin/run-in-docker.sh` and `bin/run-tests-in-docker.sh` files.
-  At the moment, we don't yet enforce a read-only file system in the future, but we might in the future!
+- Tip: if it proves impossible for the Docker image to work on a read-only filesystem, remove the `--read-only` flag from the `bin/run-in-docker.sh` and `bin/run-tests-in-docker.sh` files.
+  We don't yet enforce a read-only file system in production, but we might in the future!
 
 ## Run the test runner
 
-To run the tests of an arbitrary exercise, do the following:
+To run the tests of a single solution, do the following:
 
 1. Open a terminal in the project's root
 2. Run `./bin/run.sh <exercise-slug> <solution-dir> <output-dir>`
 
 Once the test runner has finished, its results will be written to `<output-dir>/results.json`.
 
-## Run the test runner on an exercise using Docker
+## Run the test runner on a solution using Docker
 
 _This script is provided for testing purposes, as it mimics how test runners run in Exercism's production environment._
 
-To run the tests of an arbitrary exercise using the Docker image, do the following:
+To run the tests of a single solution using the Docker image, do the following:
 
 1. Open a terminal in the project's root
 2. Run `./bin/run-in-docker.sh <exercise-slug> <solution-dir> <output-dir>`
@@ -58,4 +58,4 @@ When you've made modifications to the code that will result in a new "golden" st
 
 [test-runners]: https://github.com/exercism/docs/tree/main/building/tooling/test-runners
 [golden]: https://ro-che.info/articles/2017-12-04-golden-tests
-[exercism]: https://exercism.io
+[exercism]: https://exercism.org
