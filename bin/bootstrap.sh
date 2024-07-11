@@ -14,7 +14,25 @@ fi
 
 ORG="exercism"
 REPO="${ORG}/${SLUG}-test-runner"
-gh repo create --public --template https://github.com/${ORG}/generic-test-runner/ "${REPO}"
+
+# Create clone of this repo with track slug and name replaced
+REPO_DIR=$(mktemp -d)
+cp -a . "${REPO_DIR}"
+cd "${REPO_DIR}"
+
+for file in $(git grep --files-with-matches TRACK_SLUG); do
+    sed -i "s/TRACK_SLUG/${SLUG}/g" "${file}"
+done
+
+for file in $(git grep --files-with-matches TRACK_NAME); do
+    sed -i "s/TRACK_NAME/${LANGUAGE}/g" "${file}"
+done
+
+rm -rf .git
+git init
+git add .
+git commit -am "Initial commit"
+gh repo create exercism/fake-test-runner --public --push --source=.
 
 # Disable merge commits and rebase merges
 gh api --method PATCH "/repos/${REPO}" -f "allow_merge_commit=false" -f "allow_rebase_merge=false"

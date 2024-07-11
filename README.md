@@ -2,17 +2,13 @@
 
 This repository is a [template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository) for creating [test runners][test-runners] for [Exercism][exercism] tracks.
 
-## Using the Test Runner Template
-
-1. Replace any occurances of `TRACK_NAME` with your track's name
-1. Replace any occurances of `TRACK_SLUG` with your track's slug
 1. Build the test runner, conforming to the [Test Runner interface specification](https://github.com/exercism/docs/blob/main/building/tooling/test-runners/interface.md).
    - Update the files to match your track's needs. At the very least, you'll need to update `bin/run.sh`, `Dockerfile` and the test solutions in the `tests` directory
    - Tip: look for `TODO:` comments to point you towards code that need updating
    - Tip: look for `OPTIONAL:` comments to point you towards code that _could_ be useful
    - Tip: if it proves impossible for the Docker image to work on a read-only filesystem, feel free to remove the `--read-only` flag from the `bin/run-in-docker.sh` and `bin/run-tests-in-docker.sh` files.
      At the moment, we don't yet enforce a read-only file system in the future, but we might in the future!
-1. Remove this "Using the Test Runner Template" section from the README
+1. Remove the "Exercism Test Runner Template" section (this line and its preceding lines) from the `README.md` file
 
 # Exercism TRACK_NAME Test Runner
 
