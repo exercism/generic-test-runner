@@ -30,6 +30,7 @@ done
 
 rm -f bin/bootstrap.sh
 rm -rf .git
+mv TRACK_README.md README.md
 git init
 git add .
 git commit -am "Initial commit"
