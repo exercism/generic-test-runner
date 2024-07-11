@@ -16,12 +16,14 @@ This will automatically:
 1. Give this repository access to the secrets required to deploy the image
 1. Disable merge and rebase commits
 
-## Future work
+## Deployment
 
-Once the test runner is ready to be tested, you need to:
+Once the test runner is ready to be tested/deployed, you need to:
 
 - Manually push the image to Docker hub
+  - Give the `bots` team "read/write" permissions to the newly pushed image
 - Create a pull request to the [exercism/terraform][terraform] repository
-  - Once merged, provision the latest version to the servers and manually trigger the deploy workflow
+  - Once merged, provision the latest version to the servers
+- Manually trigger the `deploy` workflow
 
 [terraform]: https://github.com/exercism/terraform/
