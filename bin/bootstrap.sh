@@ -12,6 +12,13 @@ if [ -z "${LANGUAGE}" ] || [ -z "${SLUG}" ]; then
     exit 1
 fi
 
+for cmd in gh jq; do
+    if [ -z "$(which $cmd)" ]; then
+        echo "The '$cmd' command is required"
+        exit 1
+    fi
+done
+
 ORG="exercism"
 REPO="${ORG}/${SLUG}-test-runner"
 
