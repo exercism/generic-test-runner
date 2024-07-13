@@ -25,7 +25,7 @@ REPO="${ORG}/${SLUG}-test-runner"
 # Create clone of this repo with track slug and name replaced
 REPO_DIR=$(mktemp -d)
 cp -a . "${REPO_DIR}"
-cd "${REPO_DIR}"
+cd "${REPO_DIR}" || exit
 
 for file in $(git grep --files-with-matches TRACK_SLUG); do
     sed -i "s/TRACK_SLUG/${SLUG}/g" "${file}"
