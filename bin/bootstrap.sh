@@ -6,18 +6,30 @@
 # Example:
 # LANGUAGE=Ruby SLUG=ruby bin/bootstrap.sh
 
+set -euo pipefail
+
+scriptname="${0}"
+
+help_and_exit() {
+    echo >&2 "Create a test runner repository for a track."
+    echo >&2 "Usage: LANGUAGE=<language> SLUG=<slug> ${scriptname}"
+    exit 1
+}
+
+die() { echo >&2 "$*"; exit 1; }
+
+required_tool() {
+    command -v "$1" >/dev/null 2>&1 ||
+        die "$1 is required but not installed. Please install it and make sure it's in your PATH."
+}
+
 # If any required arguments is missing, print the usage and exit
 if [ -z "${LANGUAGE}" ] || [ -z "${SLUG}" ]; then
-    echo "usage: LANGUAGE=<language> SLUG=<slug> bin/bootstrap.sh"
-    exit 1
+    help_and_exit
 fi
 
-for cmd in gh jq; do
-    if [ -z "$(which $cmd)" ]; then
-        echo "The '$cmd' command is required"
-        exit 1
-    fi
-done
+required_tool gh
+required_tool jq
 
 ORG="exercism"
 REPO="${ORG}/${SLUG}-test-runner"
