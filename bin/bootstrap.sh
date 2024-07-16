@@ -12,13 +12,20 @@ if [ -z "${LANGUAGE}" ] || [ -z "${SLUG}" ]; then
     exit 1
 fi
 
+for cmd in gh jq; do
+    if [ -z "$(which $cmd)" ]; then
+        echo "The '$cmd' command is required"
+        exit 1
+    fi
+done
+
 ORG="exercism"
 REPO="${ORG}/${SLUG}-test-runner"
 
 # Create clone of this repo with track slug and name replaced
 REPO_DIR=$(mktemp -d)
 cp -a . "${REPO_DIR}"
-cd "${REPO_DIR}"
+cd "${REPO_DIR}" || exit
 
 for file in $(git grep --files-with-matches TRACK_SLUG); do
     sed -i "s/TRACK_SLUG/${SLUG}/g" "${file}"
