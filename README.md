@@ -1,3 +1,7 @@
+**PLEASE NOTE: These instructions are for Exercism Admins only. Maintainers should request that admins create a new test runner for them. Please create a new topic on the [forum](https://forum.exercism.org).**
+
+---
+
 # Exercism Test Runner Template
 
 This repository is a [template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository) for creating [test runners][test-runners] for [Exercism][exercism] tracks.
