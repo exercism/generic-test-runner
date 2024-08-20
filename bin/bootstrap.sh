@@ -60,6 +60,7 @@ gh api --method PATCH "/repos/${REPO}" -f "allow_merge_commit=false" -f "allow_r
 
 # Update team permissions
 gh api --method PUT "/orgs/${ORG}/teams/maintainers-admin/repos/${REPO}" -f "permission=maintain"
+gh api --method PUT "/orgs/${ORG}/teams/guardians/repos/${REPO}" -f "permission=push"
 gh api --method PUT "/orgs/${ORG}/teams/${SLUG}/repos/${REPO}" -f "permission=push"
 
 # Add repo to deploy secrets
