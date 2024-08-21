@@ -9,25 +9,23 @@ This repository is a [template repository](https://help.github.com/en/github/cre
 To create a new test runner, use the `bin/bootstrap.sh` script:
 
 ```shell
-LANGUAGE=Ruby SLUG=ruby bin/bootstrap.sh
+LANGUAGE="<LANGUAGE NAME>" SLUG="<LANGUAGE_SLUG>" bin/bootstrap.sh
+```
+
+For example:
+
+```shell
+LANGUAGE="Common Lisp" SLUG="common-lisp" bin/bootstrap.sh
 ```
 
 This will automatically:
 
 1. Create the test runner repository
-1. Setup access for the `maintainers-admin` team and the track-specific team
+1. Setup access for the `maintainers-admin`, `guardians` and track team
 1. Setup branch protection rules
 1. Give this repository access to the secrets required to deploy the image
 1. Disable merge and rebase commits
 
 ## Deployment
 
-Once the test runner is ready to be tested/deployed, you need to:
-
-- Manually push the image to Docker hub
-  - Give the `bots` team "read/write" permissions to the newly pushed image
-- Create a pull request to the [exercism/terraform][terraform] repository
-  - Once merged, provision the latest version to the servers
-- Manually trigger the `deploy` workflow
-
-[terraform]: https://github.com/exercism/terraform/
+Follow the [enable tooling to deploy to production instructions](https://github.com/exercism/maintenance/?tab=readme-ov-file#enable-tooling-to-deploy-to-production) to test/deploy the test runner.
