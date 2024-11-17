@@ -39,12 +39,12 @@ REPO_DIR=$(mktemp -d)
 cp -a . "${REPO_DIR}"
 cd "${REPO_DIR}" || die "Failed to cd to ${REPO_DIR}"
 
-for file in $(git grep --files-with-matches TRACK_SLUG); do
-    sed -i "s/TRACK_SLUG/${SLUG}/g" "${file}"
+for file in $(git grep --files-with-matches replace-this-with-the-track-slug); do
+    sed -i "s/replace-this-with-the-track-slug/${SLUG}/g" "${file}"
 done
 
-for file in $(git grep --files-with-matches TRACK_NAME); do
-    sed -i "s/TRACK_NAME/${LANGUAGE}/g" "${file}"
+for file in $(git grep --files-with-matches replace-this-with-the-track-name); do
+    sed -i "s/replace-this-with-the-track-name/${LANGUAGE}/g" "${file}"
 done
 
 rm -f bin/bootstrap.sh

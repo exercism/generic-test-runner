@@ -1,6 +1,6 @@
-# Exercism TRACK_NAME Test Runner
+# Exercism replace-this-with-the-track-name Test Runner
 
-The Docker image to automatically run tests on TRACK_NAME solutions submitted to [Exercism].
+The Docker image to automatically run tests on replace-this-with-the-track-name solutions submitted to [Exercism].
 
 ## Getting started
 
