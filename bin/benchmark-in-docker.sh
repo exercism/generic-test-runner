@@ -27,7 +27,7 @@ required_tool hyperfine
 
 # Pre-build the Docker image
 if [ -z "${SKIP_DOCKER_BUILD}" ]; then
-  docker build --rm -t exercism/TRACK_SLUG-test-runner .
+  docker build --rm -t exercism/replace-this-with-the-track-slug-test-runner .
 else
   echo "Skipping docker build because SKIP_DOCKER_BUILD is set."
 fi
