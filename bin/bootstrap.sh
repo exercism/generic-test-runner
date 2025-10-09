@@ -23,6 +23,12 @@ required_tool() {
         die "$1 is required but not installed. Please install it and make sure it's in your PATH."
 }
 
+if (( "${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}" < 44 )); then
+    echo "This script requires bash version 4.4 at minimum." >&2
+    echo "You can install a modern bash from Homebrew - https://brew.sh" >&2
+    exit 1
+fi
+
 # If any required arguments is missing, print the usage and exit
 if [[ -z "${LANGUAGE}" || -z "${SLUG}" ]]; then
     help_and_exit
