@@ -23,8 +23,14 @@ required_tool() {
         die "$1 is required but not installed. Please install it and make sure it's in your PATH."
 }
 
+if (( "${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}" < 44 )); then
+    echo "This script requires bash version 4.4 at minimum." >&2
+    echo "You can install a modern bash from Homebrew: brew install bash" >&2
+    exit 1
+fi
+
 # If any required arguments is missing, print the usage and exit
-if [ -z "${LANGUAGE}" ] || [ -z "${SLUG}" ]; then
+if [[ -z "${LANGUAGE}" || -z "${SLUG}" ]]; then
     help_and_exit
 fi
 
@@ -39,13 +45,11 @@ REPO_DIR=$(mktemp -d)
 cp -a . "${REPO_DIR}"
 cd "${REPO_DIR}" || die "Failed to cd to ${REPO_DIR}"
 
-for file in $(git grep --files-with-matches replace-this-with-the-track-slug); do
-    sed -i "s/replace-this-with-the-track-slug/${SLUG}/g" "${file}"
-done
+mapfile -t files < <(git grep --files-with-matches replace-this-with-the-track-slug)
+perl -pi -e "s/replace-this-with-the-track-slug/${SLUG}/g" "${files[@]}"
 
-for file in $(git grep --files-with-matches replace-this-with-the-track-name); do
-    sed -i "s/replace-this-with-the-track-name/${LANGUAGE}/g" "${file}"
-done
+mapfile -t files < <(git grep --files-with-matches replace-this-with-the-track-name)
+perl -pi -e "s/replace-this-with-the-track-name/${LANGUAGE}/g" "${files[@]}"
 
 rm -f bin/bootstrap.sh
 rm -rf .git
@@ -71,7 +75,38 @@ gh api --method PUT "/orgs/${ORG}/actions/secrets/DOCKERHUB_PASSWORD/repositorie
 gh api --method PUT "/orgs/${ORG}/actions/secrets/DOCKERHUB_USERNAME/repositories/${REPO_ID}"
 
 # Create ruleset for default branch
-jq -n '{name: "Default branch", target: "branch", enforcement: "active", conditions: {ref_name: {include: ["~DEFAULT_BRANCH"], exclude:[]}}, rules:[{type: "pull_request", parameters: {dismiss_stale_reviews_on_push: false, require_code_owner_review: true,require_last_push_approval: false, required_approving_review_count: 0, required_review_thread_resolution: false}}], "bypass_actors":[{"actor_id": 1, "actor_type": "OrganizationAdmin", "bypass_mode": "always"}]}' | gh api --method POST "/repos/${REPO}/rulesets" --input -
+ruleset=$(jq -cn '
+{
+    name: "Default branch",
+    target: "branch",
+    enforcement: "active",
+    conditions: {
+        ref_name: {
+            include: ["~DEFAULT_BRANCH"],
+            exclude:[]
+        }
+    },
+    rules: [
+        {
+            type: "pull_request",
+            parameters: {
+                dismiss_stale_reviews_on_push: false,
+                require_code_owner_review: true,
+                require_last_push_approval: false,
+                required_approving_review_count: 0,
+                required_review_thread_resolution: false
+            }
+        }
+    ],
+    "bypass_actors": [
+        {
+            "actor_id": 1,
+            "actor_type": "OrganizationAdmin",
+            "bypass_mode": "always"
+        }
+    ]
+}')
+gh api --method POST "/repos/${REPO}/rulesets" --input - <<< "$ruleset"
 
 # Add topics
 gh api --method PUT "/repos/${REPO}/topics" -f "names[]=exercism-test-runner" -f "names[]=exercism-tooling"

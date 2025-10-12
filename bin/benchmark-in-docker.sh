@@ -26,13 +26,13 @@ required_tool docker
 required_tool hyperfine
 
 # Pre-build the Docker image
-if [ -z "${SKIP_DOCKER_BUILD}" ]; then
+if [[ -z "${SKIP_DOCKER_BUILD}" ]]; then
   docker build --rm -t exercism/replace-this-with-the-track-slug-test-runner .
 else
   echo "Skipping docker build because SKIP_DOCKER_BUILD is set."
 fi
 
 hyperfine \
-    --parameter-list slug $(find tests -maxdepth 1 -mindepth 1 -type d -printf $'%f\n' | paste -sd ",") \
+    --parameter-list slug "$(find tests -maxdepth 1 -mindepth 1 -type d -printf $'%f\n' | paste -sd ",")" \
     --prepare 'git clean -xdfq tests/{slug}' \
     'SKIP_DOCKER_BUILD=true bin/run-in-docker.sh {slug} tests/{slug} tests/{slug}'

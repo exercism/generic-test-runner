@@ -22,6 +22,6 @@ required_tool() {
 required_tool hyperfine
 
 hyperfine \
-    --parameter-list slug $(find tests -maxdepth 1 -mindepth 1 -type d -printf $'%f\n' | paste -sd ",") \
+    --parameter-list slug "$(find tests -maxdepth 1 -mindepth 1 -type d -printf $'%f\n' | paste -sd ",")" \
     --prepare 'git clean -xdfq tests/{slug}' \
     'bin/run.sh {slug} tests/{slug} tests/{slug}'
