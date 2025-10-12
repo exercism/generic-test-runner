@@ -25,7 +25,7 @@ required_tool() {
 
 if (( "${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}" < 44 )); then
     echo "This script requires bash version 4.4 at minimum." >&2
-    echo "You can install a modern bash from Homebrew - https://brew.sh" >&2
+    echo "You can install a modern bash from Homebrew: brew install bash" >&2
     exit 1
 fi
 
