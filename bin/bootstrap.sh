@@ -36,6 +36,7 @@ fi
 
 required_tool gh
 required_tool jq
+required_tool perl
 
 ORG="exercism"
 REPO="${ORG}/${SLUG}-test-runner"
